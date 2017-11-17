@@ -1,0 +1,14 @@
+{
+	"name": "/repeatorder",
+	"description": "Repeat an order within Craft Commerce from a user accounts order history",
+	"type": "craft-plugin",
+	"authors": [
+		{
+			"name": "Matt Shearing",
+			"homepage": "https://adigital.agency"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
