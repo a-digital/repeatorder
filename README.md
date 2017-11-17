@@ -40,6 +40,20 @@ Here is an example form to get you started:
 </form>
 ```
 
+A notice can be displayed on the basket when the current stock is less than the quantity being added to the cart. The quantity is adjusted as a result or removed completely if out of stock. This notice can be displayed on the basket page like so:
+
+
+```
+{% set notice = craft.session.getFlash('notice') %}
+{% if notice %}
+	{% if notice|raw != "Cart updated." or notice|raw != "Line item updated." or notice|raw != "Line item removed." %}
+		<div class="reorder-errors">
+			{{ notice|raw }}
+		</div>
+	{% endif %}
+{% endif %}
+```
+
 Brought to you by [Matt Shearing](https://adigital.agency)
 
 ![](resources/examples/usage.gif)
