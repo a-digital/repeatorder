@@ -2,8 +2,6 @@
 
 Repeat an order within Craft Commerce from a completed orders history
 
-![Screenshot](resources/screenshots/plugin_logo.png)
-
 ## Installation
 
 To install Repeat Order, follow these steps:
