@@ -2,6 +2,8 @@
 
 Repeat an order within Craft Commerce from a completed orders history
 
+<img src="resources/icon.svg" width="250px" alt="Logo" title="Logo">
+
 ## Installation
 
 To install Repeat Order, follow these steps:
