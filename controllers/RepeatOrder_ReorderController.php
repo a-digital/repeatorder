@@ -50,10 +50,15 @@ class RepeatOrder_ReorderController extends BaseController
 		$items = craft()->repeatOrder->getOrder(craft()->request->getPost('orderId'));
 		$message = "";
 		foreach ($items as $key => $item) {
-		    $response = craft()->repeatOrder->addToOrder($item);
-		    if (isset($response["error"])) {
-			    if (isset($response["error"]["lineItems"])) {
-				    $message .= "<p>".$response["error"]["lineItems"].".</p>";
+		    if ($item["typeId"] == 1) {
+			    $snapshot = json_decode($item["snapshot"]);
+			    $message .= "<p>".$snapshot->description." cannot be reordered due to stock constraints, please <a href='/".$snapshot->product->uri."/".$item["sku"]."'>add the product</a> manually.</p>";
+		    } else {
+			    $response = craft()->repeatOrder->addToOrder($item);
+			    if (isset($response["error"])) {
+				    if (isset($response["error"]["lineItems"])) {
+					    $message .= "<p>".$response["error"]["lineItems"].".</p>";
+				    }
 			    }
 		    }
 	    }
