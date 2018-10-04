@@ -1,0 +1,32 @@
+{#
+/**
+ * Zendesk plugin for Craft CMS
+ *
+ * Zendesk Settings.twig
+ *
+ * @author    Matt Shearing
+ * @copyright Copyright (c) 2016 Matt Shearing
+ * @link      http://adigital.agency
+ * @package   Zendesk
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% set selectOptions = [] %}
+{% for productType in craft.commerce.productTypes %}
+	{% set selectOptions = selectOptions|merge([{
+		"label": productType.name,
+		"value": productType.id
+	}]) %}
+{% endfor %}
+
+{{ forms.multiSelectField({
+    label: 'Product Types',
+    instructions: 'Enter your product types to be excluded from a repeated order.',
+    id: 'productTypes',
+    name: 'productTypes', 
+    values: settings.productTypes,
+    options: selectOptions
+}) }}

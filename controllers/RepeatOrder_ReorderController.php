@@ -49,8 +49,10 @@ class RepeatOrder_ReorderController extends BaseController
 	    $this->requirePostRequest();
 		$items = craft()->repeatOrder->getOrder(craft()->request->getPost('orderId'));
 		$message = "";
+		$pluginSettings = craft()->plugins->getPlugin('repeatorder')->getSettings();
+		$productTypes = $pluginSettings->productTypes;
 		foreach ($items as $key => $item) {
-		    if ($item["typeId"] == 1) {
+		    if (in_array($item["typeId"], $productTypes)) {
 			    $snapshot = json_decode($item["snapshot"]);
 			    $message .= "<p>".$snapshot->description." cannot be reordered due to stock constraints, please <a href='/".$snapshot->product->uri."/".$item["sku"]."'>add the product</a> manually.</p>";
 		    } else {

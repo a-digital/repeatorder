@@ -139,6 +139,45 @@ class RepeatOrderPlugin extends BasePlugin
     {
         return false;
     }
+    
+    /**
+     * Returns an array whose keys define the setting names, and values define the parameters
+     *
+     * @return array
+     */
+    protected function defineSettings()
+    {
+        return array(
+            'productTypes' => array(AttributeType::Mixed, 'label' => 'Product Types', 'default' => [])
+        );
+    }
+    
+    /**
+     * Returns the HTML that displays your plugin’s settings.
+     *
+     * @return mixed
+     */
+    public function getSettingsHtml()
+    {
+       return craft()->templates->render('repeatorder/RepeatOrder_Settings', array(
+           'settings' => $this->getSettings()
+       ));
+    }
+    
+    /**
+     * If you need to do any processing on your settings’ post data before they’re saved to the database, you can
+     * do it with the prepSettings() method:
+     *
+     * @param mixed $settings  The Widget's settings
+     *
+     * @return mixed
+     */
+    public function prepSettings($settings)
+    {
+        // Modify $settings here...
+
+        return $settings;
+    }
 
     /**
      * Called right before your plugin’s row gets stored in the plugins database table, and tables have been created
